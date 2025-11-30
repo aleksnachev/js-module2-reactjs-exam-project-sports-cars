@@ -1,16 +1,69 @@
-# React + Vite
+# Sports Cars Showroom – React.js SPA
+This is a JS React project, created by Alexandar Nachev.  
+It is a Single Page Application for managing and showcasing sports cars. Users can browse all cars, view details, and—if authenticated—create, edit, and delete their own listings.  
+The project demonstrates core React concepts such as client-side routing, authentication, CRUD operations, and component-based architecture.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Public Area
+- Home Page
+- Catalog of all sports cars
+- Car Details (read-only for guests)
+- Login Page
+- Register Page
 
-## React Compiler
+### Private Area (Authenticated Users)
+- Add new car listing
+- Edit owned car listings
+- Delete owned car listings
+- Comments system (bonus)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Pages & Routes
+- `/` – Home
+- `/catalog` – Catalog of all cars
+- `/details/:id` – Car details page
+- `/add` – Add new car
+- `/edit/:id` – Edit car page
+- `/login` – Login
+- `/register` – Register
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Includes full route guarding:
+- Guests cannot access private pages.
+- Logged-in users cannot access login/register pages.
+
+---
+
+## Technologies Used
+- React.js
+- React Router
+- Context API (authentication state)
+- REST API communication (Firebase, Kinvey, or custom backend)
+- External CSS styling
+
+---
+
+## React Concepts Demonstrated
+- React Hooks (useState, useEffect, useContext)
+- Stateless and stateful components
+- Controlled forms and synthetic events
+- Component lifecycle behavior through effects
+- Reusable components
+- Error handling and form validation
+- Client-side routing with parameters
+
+---
+
+## Bonus Features
+- Comments on car pages
+- Deployment (Firebase / Netlify)
+- External API integrations (optional)
+
+---
+
+## Author
+**Alexandar Nachev**  
+React.js Final Exam Project – SoftUni
