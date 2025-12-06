@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function CarCardCatalog({
     car
 }) {
@@ -12,12 +14,12 @@ export default function CarCardCatalog({
                 <p className="text-white/70 mb-2">{car.year} · {car.type}</p>
                 <p className="text-white/50 mb-4">Produced: {car.produced}</p>
 
-                <button
+                <Link to={`/cars/${car._id}/details`}
                     className="w-full border border-white/30 text-white py-2 rounded-lg
                              hover:bg-white hover:text-black transition-all duration-200"
                 >
                     Details
-                </button>
+                </Link>
             </div>
         </div>
     )

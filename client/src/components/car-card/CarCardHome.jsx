@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function CarCardHome({
     car
 }) {
@@ -10,9 +12,9 @@ export default function CarCardHome({
                     <p className="text-white/60 text-sm">{car.date} · {car.type} · {car.produced} units</p>
                 </div>
 
-                <button className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
+                <Link to={`/cars/${car._id}/details`} className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
                     Details
-                </button>
+                </Link>
             </div>
         </div>
     )

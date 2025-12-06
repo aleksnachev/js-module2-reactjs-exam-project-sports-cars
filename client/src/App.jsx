@@ -5,6 +5,7 @@ import Catalog from './components/catalog/Catalog.jsx'
 import Login from './components/login/Login.jsx'
 import Register from './components/register/Register.jsx'
 import AddCar from './components/add-car/AddCar.jsx'
+import Details from './components/details/Details.jsx'
 
 function App() {
 
@@ -14,10 +15,13 @@ function App() {
 
                 <Routes>
                     <Route path="/" element={<Home/>}/>
+
                     <Route path="/cars" element={<Catalog/>}/>
+                    <Route path="/cars/:carId/details" element={<Details/>}/>
+                    <Route path="/cars/create" element={<AddCar/>}/>
+
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
-                    <Route path="/cars/create" element={<AddCar/>}/>
 
                 </Routes>
         </>
