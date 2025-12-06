@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
+
 export default function AddCar() {
+    const navigate = useNavigate()
 
     const addCarAction = async (e) => {
         e.preventDefault()
@@ -15,9 +18,11 @@ export default function AddCar() {
             body: JSON.stringify(data)
         })
         const result = await response.json()
+        navigate('/cars')
         console.log(result);
-
     }
+
+
     return (
         <div className="min-h-screen bg-black pt-32 px-6 flex justify-center">
             <div className="w-full max-w-2xl border border-white/20 bg-black/40 backdrop-blur-md rounded-xl p-10">

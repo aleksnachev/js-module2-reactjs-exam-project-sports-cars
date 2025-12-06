@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import CarCardHome from "../car-card/CarCardHome.jsx"
 
 export default function Home() {
     const [latestCars, setLatestCars] = useState([])
@@ -45,64 +46,7 @@ export default function Home() {
 
                         <div className="flex flex-col gap-5">
                             {latestCars.length === 0 && <p>No cars added yet</p>}
-                            {latestCars.map(car => (<div className="border border-white/20 rounded-lg p-4 flex gap-4 bg-black/20">
-                                <img src="/images/car1.jpg" className="w-32 h-20 object-cover rounded" />
-                                <div className="text-white flex flex-col justify-between w-full">
-                                    <div>
-                                        <p className="text-lg font-semibold">{car.name}</p>
-                                        <p className="text-white/60 text-sm">{car.date} · {car.type} · {car.produced} units</p>
-                                    </div>
-
-                                    <button className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
-                                        Details
-                                    </button>
-                                </div>
-                            </div>))}
-
-                            {/* Car 1 */}
-                            <div className="border border-white/20 rounded-lg p-4 flex gap-4 bg-black/20">
-                                <img src="/images/car1.jpg" className="w-32 h-20 object-cover rounded" />
-                                <div className="text-white flex flex-col justify-between w-full">
-                                    <div>
-                                        <p className="text-lg font-semibold">Ferrari SF90 Stradale</p>
-                                        <p className="text-white/60 text-sm">2023 · Hybrid · 500 units</p>
-                                    </div>
-
-                                    <button className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
-                                        Details
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Car 2 */}
-                            <div className="border border-white/20 rounded-lg p-4 flex gap-4 bg-black/20">
-                                <img src="/images/car2.jpg" className="w-32 h-20 object-cover rounded" />
-                                <div className="text-white flex flex-col justify-between w-full">
-                                    <div>
-                                        <p className="text-lg font-semibold">Porsche 911 Turbo S</p>
-                                        <p className="text-white/60 text-sm">2024 · Sports · 800 units</p>
-                                    </div>
-
-                                    <button className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
-                                        Details
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Car 3 */}
-                            <div className="border border-white/20 rounded-lg p-4 flex gap-4 bg-black/20">
-                                <img src="/images/car3.jpg" className="w-32 h-20 object-cover rounded" />
-                                <div className="text-white flex flex-col justify-between w-full">
-                                    <div>
-                                        <p className="text-lg font-semibold">Lamborghini Revuelto</p>
-                                        <p className="text-white/60 text-sm">2023 · Hybrid V12 · 250 units</p>
-                                    </div>
-
-                                    <button className="border border-white/30 text-white py-1 rounded-lg hover:bg-white hover:text-black transition-all">
-                                        Details
-                                    </button>
-                                </div>
-                            </div>
+                            {latestCars.map(car => (<CarCardHome car={car} key={car._id}/>))}
 
                         </div>
                     </div>

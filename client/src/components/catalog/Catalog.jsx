@@ -1,38 +1,13 @@
-import { useEffect } from "react";
-
-const cars = [
-    {
-        id: 1,
-        name: "Ferrari SF90 Stradale",
-        year: 2023,
-        type: "Hybrid Supercar",
-        produced: 500,
-        img: "/images/car1.jpg",
-    },
-    {
-        id: 2,
-        name: "Porsche 911 Turbo S",
-        year: 2024,
-        type: "Sports",
-        produced: 800,
-        img: "/images/car2.jpg",
-    },
-    {
-        id: 3,
-        name: "Lamborghini Revuelto",
-        year: 2023,
-        type: "Hybrid V12",
-        produced: 250,
-        img: "/images/car3.jpg",
-    },
-];
-
+import { useEffect, useState } from "react";
+import CarCardCatalog from "../car-card/CarCardCatalog.jsx";
 
 export default function Catalog() {
+    const [cars,setCars] = useState([])
     useEffect(() => {
         fetch('http://localhost:3030/jsonstore/games')
             .then(res => res.json())
-            .then((mu) => console.log(mu))
+            .then((cars) => setCars(Object.values(cars)))
+            .catch(err => alert(err.message))
     }, [])
 
     return (
@@ -43,28 +18,8 @@ export default function Catalog() {
                 </h1>
 
                 <div className="grid grid-cols-3 gap-10">
-
-                    {cars.map((car) => (
-                        <div
-                            key={car.id}
-                            className="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30"
-                        >
-                            <img src={car.img} className="w-full h-48 object-cover" />
-
-                            <div className="p-6">
-                                <h2 className="text-2xl font-semibold mb-2">{car.name}</h2>
-                                <p className="text-white/70 mb-2">{car.year} · {car.type}</p>
-                                <p className="text-white/50 mb-4">Produced: {car.produced}</p>
-
-                                <button
-                                    className="w-full border border-white/30 text-white py-2 rounded-lg
-                             hover:bg-white hover:text-black transition-all duration-200"
-                                >
-                                    Details
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                    {cars.length === 0 && <p>No cars added yet</p>}
+                    {cars.map((car) => <CarCardCatalog car={car} key={car._id}/>)}
 
                 </div>
             </div>
