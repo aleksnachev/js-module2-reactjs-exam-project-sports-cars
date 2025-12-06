@@ -30,7 +30,7 @@ export default function Header() {
                     </NavLink>
 
                     <NavLink
-                        to="/catalog"
+                        to="/cars"
                         className={({ isActive }) =>
                             isActive
                                 ? `${navStyles} brightness-150 scale-110`
@@ -41,7 +41,7 @@ export default function Header() {
                     </NavLink>
 
                     <NavLink
-                        to="/addCar"
+                        to="/cars/create"
                         className={({ isActive }) =>
                             isActive
                                 ? `${navStyles} brightness-150 scale-110`

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const cars = [
     {
         id: 1,
@@ -25,7 +27,14 @@ const cars = [
     },
 ];
 
+
 export default function Catalog() {
+    useEffect(() => {
+        fetch('http://localhost:3030/jsonstore/games')
+            .then(res => res.json())
+            .then((mu) => console.log(mu))
+    }, [])
+
     return (
         <div className="min-h-screen bg-black text-white pt-32 px-10">
             <div className="max-w-7xl mx-auto">
