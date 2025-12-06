@@ -6,6 +6,7 @@ import Login from './components/login/Login.jsx'
 import Register from './components/register/Register.jsx'
 import AddCar from './components/add-car/AddCar.jsx'
 import Details from './components/details/Details.jsx'
+import Footer from './components/footer/Footer.jsx'
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
 
                 </Routes>
+                
+            <Footer/>
         </>
     )
 }
