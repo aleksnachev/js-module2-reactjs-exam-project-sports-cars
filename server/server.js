@@ -1333,51 +1333,56 @@
         }
     };
     var seedData = {
-        
-        games: {
-           "5c7d8f0e-3a9b-4c2d-9e1f-6a4b3c8d2e7a": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "The Witcher 3",
-            "genre": "Open World",
-            "players": 32000,
-            "date": "2015-05-19",
-            "imageUrl": "/images/witcher.png",
-            "summary": "A story-driven, open world fantasy RPG. Play as Geralt of Rivia, a monster slayer for hire, who must find the Child of Prophecy in a vast, war-torn world. The game is known for its morally gray choices, mature storyline, and expansive world exploration.",
-            "_createdOn": 1617194350000
-        },
-        "7b9a2c4f-1d5e-4b6c-8a3d-2f1e0g3h4i5j": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Elden Ring",
-            "genre": "Action RPG",
-            "players": 105000,
-            "date": "2022-02-25",
-            "imageUrl": "/images/elden ring.png",
-            "summary": "A monumental fantasy action RPG developed by FromSoftware and Bandai Namco. Set in the Lands Between, players embark on an epic quest to become the Elden Lord, exploring a vast open world designed by Hidetaka Miyazaki, with worldbuilding contributed by fantasy author George R. R. Martin.",
-            "_createdOn": 1645708800000
-        },
-        "3d4e5f6g-7h8i-9j0k-1l2m-3n4o5p6q7r8s": {
-            "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-            "title": "Minecraft",
-            "genre": "Sandbox",
-            "players": 1400000,
-            "date": "2011-11-18",
-            "imageUrl": "/images/minecraft.png",
-            "summary": "Minecraft is a sandbox video game where players explore a blocky, procedurally generated 3D world with infinite terrain. Players may discover and extract raw materials, craft tools and items, and build structures, earthworks and simple machines.",
-            "_createdOn": 1617194450000
-        },
-        "9f8e7d6c-5b4a-3c2d-1e0f-9g8h7i6j5k4l": {
-            "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-            "title": "Cyberpunk 2077",
-            "genre": "Action RPG",
-            "players": 85000,
-            "date": "2020-12-10",
-            "imageUrl": "/images/cyberpunk.png",
-            "summary": "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.",
-            "_createdOn": 1607558400000
+
+        cars: {
+
+            "a1b2c3d4-e5f6-47a8-1234-abcdef123456": {
+                "date": "2024",
+                "description": "The Aston Martin Valkyrie is a limited-edition hypercar blending F1 technology and road car usability. Exquisite craftsmanship meets raw power.",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Aston_Martin_Valkyrie_front_2019_Goodwood.jpg",
+                "name": "Aston Martin Valkyrie",
+                "produced": "150",
+                "type": "Hypercar",
+                "_createdOn": 1765035000000,
+                "_id": "a1b2c3d4-e5f6-47a8-1234-abcdef123456",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
+            },
+            "b2c3d4e5-f6a7-48b9-2345-bcdef1234567": {
+                "date": "2022",
+                "description": "The McLaren Artura is McLaren's entry into hybrid supercars — combining lightweight design with electrified power and track-ready performance.",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/McLaren_Artura_2021.jpg",
+                "name": "McLaren Artura",
+                "produced": "1200",
+                "type": "Hybrid Supercar",
+                "_createdOn": 1765035100000,
+                "_id": "b2c3d4e5-f6a7-48b9-2345-bcdef1234567",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
+            },
+            "c3d4e5f6-a7b8-49c0-3456-cdef12345678": {
+                "date": "2025",
+                "description": "The Bugatti Chiron Super Sport 300+ is an engineering marvel delivering over 300mph. Ultimate luxury meets unparalleled speed.",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Bugatti_Chiron_Super_Sport_300%2B_2021.jpg",
+                "name": "Bugatti Chiron Super Sport 300+",
+                "produced": "500",
+                "type": "Hypercar",
+                "_createdOn": 1765035200000,
+                "_id": "c3d4e5f6-a7b8-49c0-3456-cdef12345678",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
+            },
+            "d4e5f6a7-b8c9-50d1-4567-def123456789": {
+                "date": "2023",
+                "description": "The Rolls-Royce Cullinan Black Badge combines SUV practicality with the unmatched refinement and prestige of Rolls-Royce craftsmanship.",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Rolls-Royce_Cullinan_Black_Badge_2020.jpg",
+                "name": "Rolls-Royce Cullinan Black Badge",
+                "produced": "800",
+                "type": "Luxury SUV",
+                "_createdOn": 1765035300000,
+                "_id": "d4e5f6a7-b8c9-50d1-4567-def123456789",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8"
             }
         },
         comments: {
-        
+
         }
     };
     var rules$1 = {

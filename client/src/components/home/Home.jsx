@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react"
+import useRequest from "../../hooks/useRequest.js"
 import CarCardHome from "../car-card/CarCardHome.jsx"
 
 export default function Home() {
-    const [latestCars, setLatestCars] = useState([])
+    // const [latestCars, setLatestCars] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/games')
-            .then(res => res.json())
-            .then(cars => {
-                const resultCars = Object.values(cars)
-                    .sort((a, b) => b._createdOn - a._createdOn)
-                    .slice(0, 3)
-                setLatestCars(resultCars)
-            })
-            .catch(err => alert(err.message))
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:3030/jsonstore/games')
+    //         .then(res => res.json())
+    //         .then(cars => {
+    //             const resultCars = Object.values(cars)
+    //                 .sort((a, b) => b._createdOn - a._createdOn)
+    //                 .slice(0, 3)
+    //             setLatestCars(resultCars)
+    //         })
+    //         .catch(err => alert(err.message))
+    // }, [])
+
+    const {data: latestCars} = useRequest(`/data/cars?sortBy=_createdOn%20desc&pageSize=3`, [])
     return (
         <div
             className="min-h-screen w-full bg-cover bg-center bg-no-repeat pt-32 px-10"
