@@ -11,7 +11,7 @@ export default function CarCardCatalog({
 
             <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-2">{car.name}</h2>
-                <p className="text-white/70 mb-2">{car.year} · {car.type}</p>
+                <p className="text-white/70 mb-2">{car.date} · {car.type}</p>
                 <p className="text-white/50 mb-4">Produced: {car.produced}</p>
 
                 <Link to={`/cars/${car._id}/details`}
