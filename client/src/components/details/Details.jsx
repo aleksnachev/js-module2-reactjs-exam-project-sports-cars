@@ -1,18 +1,55 @@
 
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
+import { useContext, useOptimistic } from "react";
+import { useParams, Link, useNavigate } from "react-router";
+import UserContext from "../../contexts/UserContext.jsx";
+import useRequest from "../../hooks/useRequest.js";
+import DetailsComments from "./details-comments/DetailsComments.jsx";
+import CreateComment from "./create-comment/CreateComments.jsx";
 
 export default function Details() {
+    const { user, isAuthenticated } = useContext(UserContext)
+    const navigate = useNavigate()
     const { carId } = useParams();
-    console.log(carId);
-    const [car,setCar] = useState({})
+    const { data: car, request } = useRequest(`/data/cars/${carId}`, [])
 
-    useEffect(() => {
-        fetch(`http://localhost:3030/jsonstore/games/${carId}`)
-        .then(res => res.json())
-        .then(result => setCar(result))
-        .catch(err => alert(err.messagee))
-    },[carId])
+    const urlParams = new URLSearchParams({
+        where: `carId="${carId}"`,
+        load: 'author=_ownerId:users'
+    })
+
+    const { data: comments, setData: setComments } = useRequest(`/data/comments?${urlParams.toString()}`, [])
+    const [optimisticComments, dispatchOptimisticComments] = useOptimistic(comments, (state, action) => {
+        switch (action.type) {
+            case 'ADD-COMMENT':
+                return [...state, action.payload]
+            default:
+                return state
+        }
+    })
+    const deleteCarHandler = async () => {
+        const isConfirmed = confirm(`Are you sure you want to delete game: ${car.title}`)
+
+        if (!isConfirmed) {
+            return
+        }
+
+        try {
+            await request(`/data/cars/${carId}`, 'DELETE')
+
+            navigate('/cars')
+        } catch (err) {
+            alert('Unable to delete car: ', err.message)
+        }
+    }
+
+    const createEndCommentHandler = (createdComment) => {
+        setComments(prevComments => [...prevComments, { ...createdComment, author: user }])
+    }
+
+    const createStartCommmentHandler = (newComment) => {
+        dispatchOptimisticComments({ type: 'ADD_COMMENT', payload: { ...newComment, author: user, pending: true } })
+    }
+    
 
     return (
         <div className="min-h-screen bg-black text-white px-10 py-10 flex justify-center">
@@ -45,8 +82,10 @@ export default function Details() {
 
                     {/* BUTTONS */}
                     <div className="flex gap-5 mt-10">
+                    {user._id === car._ownerId && (
+                        <>
                         <Link
-                            to={`/cars/${car.id}/edit`}
+                            to={`/cars/${carId}/edit`}
                             className="px-7 py-3 border border-white text-white rounded-xl text-lg transition duration-200
                                        hover:bg-white hover:text-black hover:scale-105"
                         >
@@ -56,10 +95,12 @@ export default function Details() {
                         <button
                             className="px-7 py-3 border border-red-500 text-red-400 rounded-xl text-lg transition duration-200
                                        hover:bg-red-600 hover:text-white hover:scale-105"
+                            onClick={deleteCarHandler}
                         >
                             Delete
                         </button>
-
+                        </>
+                    )}
                         <Link
                             to="/cars"
                             className="px-7 py-3 border border-gray-400 text-gray-300 rounded-xl text-lg transition duration-200
@@ -68,6 +109,8 @@ export default function Details() {
                             Back to Catalog
                         </Link>
                     </div>
+                    <DetailsComments comments={optimisticComments}/>
+                    {isAuthenticated && <CreateComment user={user} onCreateStart={createStartCommmentHandler} onCreateEnd={createEndCommentHandler}/>}
                 </div>
             </div>
         </div>
