@@ -1,14 +1,41 @@
 import { useNavigate, useParams } from "react-router"
 import useRequest from "../../hooks/useRequest.js"
 import useForm from "../../hooks/useForm.js"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export default function EditCar() {
     const navigate = useNavigate()
     const { carId } = useParams()
     const { request } = useRequest()
 
+    const [error, setError] = useState("");
+
     const editCarHandler = async (values) => {
+
+        setError("");
+
+        const { name, type, produced, date, imageUrl, description } = values;
+
+        if (!name || !type || !produced || !date || !imageUrl || !description) {
+            return setError("All fields are required.");
+        }
+
+        if (Number(produced) < 1) {
+            return setError("Units produced must be a positive number.");
+        }
+
+        if (Number(date) < 1886 || Number(date) > 2035) {
+            return setError("Year must be between 1886 and 2035.");
+        }
+
+        if (!imageUrl.startsWith("http")) {
+            return setError("Image URL must be a valid link.");
+        }
+
+        if (description.length < 10) {
+            return setError("Description must be at least 10 characters long.");
+        }
+
         try {
             await request(`/data/cars/${carId}`, 'PUT', values)
             navigate(`/cars/${carId}/details`)
@@ -43,6 +70,12 @@ export default function EditCar() {
             <h1 className="text-4xl font-bold text-white mb-10 tracking-wide text-center">
                 Edit Car
             </h1>
+
+            {error && (
+                <div className="w-full text-center border border-red-500/40 bg-red-600/20 text-red-300 py-2 px-4 rounded-lg mb-8 tracking-wide">
+                    {error}
+                </div>
+            )}
 
             <form action={formAction} className="space-y-8">
 

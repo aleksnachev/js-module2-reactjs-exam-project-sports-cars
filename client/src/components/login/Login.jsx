@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import UserContext from "../../contexts/UserContext.jsx";
 import useForm from "../../hooks/useForm.js";
@@ -8,18 +8,23 @@ export default function Login() {
     const navigate = useNavigate()
     const { loginHandler } = useContext(UserContext)
 
+    const [error, setError] = useState("");
+
     const submitHandler = async ({ email, password }) => {
+        setError("")
         if (!email || !password) {
-            return alert('Email and password are required!')
+            return setError("Email and password are required.");
         }
 
         try {
-            await loginHandler(email, password)
-            navigate('/')
+            await loginHandler(email, password);
+            navigate('/');
         } catch (err) {
-            alert(err.message)
+            setError(err.message || "Invalid email or password");
         }
-    }
+    };
+
+
 
     const { register, formAction } = useForm(submitHandler, {
         email: '',
@@ -33,6 +38,12 @@ export default function Login() {
                     Login
                 </h1>
 
+                {error && (
+                    <div className="w-full text-center border border-red-400/40 bg-red-500/20 text-red-300 py-2 px-4 rounded-lg mb-4 tracking-wide">
+                        {error}
+                    </div>
+                )}
+
                 <form className="flex flex-col gap-6" action={formAction}>
 
                     <div className="flex flex-col gap-2">
@@ -41,7 +52,7 @@ export default function Login() {
                             type="email"
                             className="bg-black/30 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-white/40"
                             placeholder="Enter your email"
-                            id = "email"
+                            id="email"
                             {...register('email')}
                         />
                     </div>
@@ -52,7 +63,7 @@ export default function Login() {
                             type="password"
                             className="bg-black/30 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-white/40"
                             placeholder="Enter your password"
-                            id = "login-password"
+                            id="login-password"
                             {...register('password')}
                         />
                     </div>

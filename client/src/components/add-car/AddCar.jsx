@@ -1,25 +1,53 @@
 import { useNavigate } from "react-router";
 import useRequest from "../../hooks/useRequest.js";
 import useForm from "../../hooks/useForm.js";
+import { useState } from "react";
 
 export default function AddCar() {
     const navigate = useNavigate()
-    const {request} = useRequest()
+    const { request } = useRequest()
 
-    const createCarHandler = async(values) => {
-        const data = values
-        data.prodused = Number(data.produced)
+    const [error, setError] = useState("");
 
-        try{
+    const createCarHandler = async (values) => {
+        setError("")
+        const { name, type, produced, date, imageUrl, description } = values;
+
+        if (!name || !type || !produced || !date || !imageUrl || !description) {
+            return setError("All fields are required.");
+        }
+
+        if (Number(produced) < 1) {
+            return setError("Units produced must be a positive number.");
+        }
+
+        if (Number(date) < 1886 || Number(date) > 2035) {
+            return setError("Year must be between 1886 and 2035.");
+        }
+
+        if (!imageUrl.startsWith("http")) {
+            return setError("Image URL must be a valid link starting with http or https.");
+        }
+
+        if (description.length < 10) {
+            return setError("Description must be at least 10 characters.");
+        }
+
+        const data = {
+            ...values,
+            produced: Number(values.produced)
+        };
+
+        try {
             await request('/data/cars', 'POST', data)
             navigate('/cars')
-        }catch(err){
+        } catch (err) {
             alert(err.message)
         }
     }
 
-    const {register, formAction} = useForm(createCarHandler, {
-        name: '', 
+    const { register, formAction } = useForm(createCarHandler, {
+        name: '',
         type: '',
         produced: '',
         date: '',
@@ -35,6 +63,12 @@ export default function AddCar() {
                 <h1 className="text-white text-4xl font-semibold mb-10 tracking-wide text-center">
                     Add a New Luxury Car
                 </h1>
+
+                {error && (
+                    <div className="w-full text-center border border-red-500/40 bg-red-600/20 text-red-300 py-2 px-4 rounded-lg mb-6 tracking-wide">
+                        {error}
+                    </div>
+                )}
 
                 <form className="flex flex-col gap-7" action={formAction}>
 
