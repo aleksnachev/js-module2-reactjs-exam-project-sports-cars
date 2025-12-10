@@ -27,7 +27,7 @@ export default function Details() {
         }
     })
     const deleteCarHandler = async () => {
-        const isConfirmed = confirm(`Are you sure you want to delete game: ${car.title}`)
+        const isConfirmed = confirm(`Are you sure you want to delete game: ${car.name}`)
 
         if (!isConfirmed) {
             return
