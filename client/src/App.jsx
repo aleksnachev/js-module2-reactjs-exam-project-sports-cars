@@ -11,6 +11,8 @@ import Logout from './components/logout/Logout.jsx'
 import { useContext } from 'react'
 import UserContext from './contexts/UserContext.jsx'
 import EditCar from './components/edit/Edit.jsx'
+import RouteGuard from './components/route-guard/RouteGuard.jsx'
+import OwnerGuard from './components/route-guard/OwnerGuard.jsx'
 
 function App() {
     const {user} = useContext(UserContext)
@@ -23,12 +25,17 @@ function App() {
 
                     <Route path="/cars" element={<Catalog/>}/>
                     <Route path="/cars/:carId/details" element={<Details user={user}/>}/>
-                    <Route path="/cars/create" element={<AddCar/>}/>
-                    <Route path="/cars/:carId/edit" element={<EditCar/>}/>
 
+                    <Route element = {<RouteGuard/>}>
+                        <Route path="/cars/create" element={<AddCar/>}/>
+                        <Route element={<OwnerGuard/>}>
+                            <Route path="/cars/:carId/edit" element={<EditCar/>}/>
+                        </Route>
+                    </Route>
+
+                    <Route path="/logout" element={<Logout/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
-                    <Route path="/logout" element={<Logout/>}/>
 
 
                 </Routes>

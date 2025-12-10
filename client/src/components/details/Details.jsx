@@ -82,7 +82,7 @@ export default function Details() {
 
                     {/* BUTTONS */}
                     <div className="flex gap-5 mt-10">
-                    {user._id === car._ownerId && (
+                    {user?._id === car._ownerId && (
                         <>
                         <Link
                             to={`/cars/${carId}/edit`}
