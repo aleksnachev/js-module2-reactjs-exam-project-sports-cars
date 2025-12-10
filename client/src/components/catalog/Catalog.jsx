@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
 import CarCardCatalog from "../car-card/CarCardCatalog.jsx";
+import useRequest from "../../hooks/useRequest.js";
 
 export default function Catalog() {
-    const [cars,setCars] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:3030/jsonstore/games')
-            .then(res => res.json())
-            .then((cars) => setCars(Object.values(cars)))
-            .catch(err => alert(err.message))
-    }, [])
+    const {data: cars} = useRequest('/data/cars', [])
 
     return (
         <div className="min-h-screen bg-black text-white pt-32 px-10">

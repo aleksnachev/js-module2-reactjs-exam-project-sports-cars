@@ -20,7 +20,7 @@ export function UserProvider({
     children
 }) {
 
-    const [user, setUser] = usePersistedState(null)
+    const [user, setUser] = usePersistedState(null, 'auth')
     const { request } = useRequest()
 
     const registerHandler = async (email, password) => {
