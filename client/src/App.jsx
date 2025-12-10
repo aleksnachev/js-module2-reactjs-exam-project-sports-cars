@@ -10,6 +10,7 @@ import Footer from './components/footer/Footer.jsx'
 import Logout from './components/logout/Logout.jsx'
 import { useContext } from 'react'
 import UserContext from './contexts/UserContext.jsx'
+import EditCar from './components/edit/Edit.jsx'
 
 function App() {
     const {user} = useContext(UserContext)
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/cars" element={<Catalog/>}/>
                     <Route path="/cars/:carId/details" element={<Details user={user}/>}/>
                     <Route path="/cars/create" element={<AddCar/>}/>
+                    <Route path="/cars/:carId/edit" element={<EditCar/>}/>
 
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
