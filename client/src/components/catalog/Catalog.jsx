@@ -3,7 +3,7 @@ import useRequest from "../../hooks/useRequest.js";
 
 export default function Catalog() {
     const {data: cars} = useRequest('/data/cars', [])
-
+    
     return (
         <div className="min-h-screen bg-black text-white pt-32 px-10">
             <div className="max-w-7xl mx-auto">
