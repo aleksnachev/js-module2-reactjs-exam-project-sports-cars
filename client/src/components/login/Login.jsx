@@ -41,6 +41,7 @@ export default function Login() {
                             type="email"
                             className="bg-black/30 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-white/40"
                             placeholder="Enter your email"
+                            id = "email"
                             {...register('email')}
                         />
                     </div>
@@ -51,6 +52,7 @@ export default function Login() {
                             type="password"
                             className="bg-black/30 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-white/40"
                             placeholder="Enter your password"
+                            id = "login-password"
                             {...register('password')}
                         />
                     </div>
