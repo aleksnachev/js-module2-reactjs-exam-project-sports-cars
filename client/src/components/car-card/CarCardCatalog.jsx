@@ -7,7 +7,7 @@ export default function CarCardCatalog({
         <div
             className="border border-white/20 rounded-xl overflow-hidden backdrop-blur-sm bg-black/30"
         >
-            <img src={car.img} className="w-full h-48 object-cover" />
+            <img src={car.imageUrl} className="w-full h-48 object-cover" />
 
             <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-2">{car.name}</h2>

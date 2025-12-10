@@ -5,7 +5,7 @@ export default function CarCardHome({
 }) {
     return (
         <div className="border border-white/20 rounded-lg p-4 flex gap-4 bg-black/20">
-            <img src="/images/car1.jpg" className="w-32 h-20 object-cover rounded" />
+            <img src={car.imageUrl} className="w-32 h-20 object-cover rounded" />
             <div className="text-white flex flex-col justify-between w-full">
                 <div>
                     <p className="text-lg font-semibold">{car.name}</p>

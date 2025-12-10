@@ -16,7 +16,7 @@ export default function Home() {
     //         .catch(err => alert(err.message))
     // }, [])
 
-    const {data: latestCars} = useRequest(`/data/cars?sortBy=_createdOn%20desc&pageSize=3`, [])
+    const { data: latestCars } = useRequest(`/data/cars?sortBy=_createdOn%20desc&pageSize=3`, [])
     return (
         <div
             className="min-h-screen w-full bg-cover bg-center bg-no-repeat pt-32 px-10"
@@ -26,12 +26,11 @@ export default function Home() {
 
                 {/* LEFT SIDE – LUXURY TEXT */}
                 <div className="w-1/2 text-white">
-                    <h1 className="text-6xl font-semibold tracking-wider mb-8">
-                        Where Power Meets
-                        <span className="block text-white/70 mt-2">Timeless Luxury.</span>
+                    <h1 className="text-5xl font-bold text-black tracking-wide mb-6">
+                        Discover the World of Luxury Cars
                     </h1>
 
-                    <p className="text-xl text-white/80 leading-relaxed">
+                    <p className="text-lg text-black/80 leading-relaxed max-w-3xl mx-auto">
                         Explore a curated collection of the world’s most exclusive
                         sports cars. Precision engineering, timeless elegance, and
                         unrivaled performance — crafted for those who expect more.
@@ -48,7 +47,7 @@ export default function Home() {
 
                         <div className="flex flex-col gap-5">
                             {latestCars.length === 0 && <p>No cars added yet</p>}
-                            {latestCars.map(car => (<CarCardHome car={car} key={car._id}/>))}
+                            {latestCars.map(car => (<CarCardHome car={car} key={car._id} />))}
 
                         </div>
                     </div>
